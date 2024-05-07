@@ -7,60 +7,28 @@
         <link rel="stylesheet", href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body style=" background: linear-gradient(90deg, #519be1, #F87293, #F9B78B);">
-        <button id="btn1" class="button_1" target="_blank">
-            1 person
-            <p> voices: <span id="display1">0</span></p> 
-        </button>
+        
+        <form method="post">
+            <button name="btn1" id="btn1" class="button_1" target="_blank" value = "btn1"> 
+                1 person
+                <p> voices: {{voices1}}</p> 
+            </button>
 
-        <button id="btn2" class="button_2" target="_blank"> 
-            2 person
-            <p> voices: <span id="display2">0</span></p> 
-        </button>
+            <button name="btn2" id="btn2" class="button_2" target="_blank" value = "btn2"> 
+                2 person
+                <p> voices: {{voices2}}</span></p> 
+            </button>
 
-        <button id="btn3" class="button_3" target="_blank">
-            3 person
-            <p> voices: <span id="display3">0</span></p> 
-        </button>
+            <button name="btn3" id="btn3" class="button_3" target="_blank" value = "btn3">
+                3 person
+                <p> voices: {{voices3}}</p> 
+            </button>
 
-        <button id="btn4" class="button_4" target="_blank">
-            4 person
-            <p> voices: <span id="display4">0</span></p> 
-        </button>
-
-        <script type="text/javascript">
-            let count1 = 0;
-            let btn1 = document.getElementById("btn1");
-            let disp1 = document.getElementById("display1");
-            btn1.onclick = function () {
-                count1++;
-                disp1.innerHTML = count1;
-            }
-
-            let count2 = 0;
-            let btn2 = document.getElementById("btn2");
-            let disp2 = document.getElementById("display2");
-            btn2.onclick = function () {
-                count2++;
-                disp2.innerHTML = count2;
-            }
-
-            let count3 = 0;
-            let btn3 = document.getElementById("btn3");
-            let disp3 = document.getElementById("display3");
-            btn3.onclick = function () {
-                count3++;
-                disp3.innerHTML = count3;
-            }
-
-            let count4 = 0;
-            let btn4 = document.getElementById("btn4");
-            let disp4 = document.getElementById("display4");
-            btn4.onclick = function () {
-                count4++;
-                disp4.innerHTML = count4;
-            }
-
-        </script>
+            <button name="btn4" id="btn4" class="button_4" target="_blank" value = "btn4">
+                4 person
+                <p> voices: {{voices4}}</p> 
+            </button>
+        </form>
 
     </body>
 </html>
