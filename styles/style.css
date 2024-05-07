@@ -5,7 +5,7 @@
     height: 15%;
     padding: 0;
     display: inline-block;
-    line-height: 0;
+    line-height: 20px;
     text-align: center;
     display: inline-block !important;
     text-decoration: none !important;
@@ -15,6 +15,7 @@
     margin-right: 50px;
     vertical-align: middle;
     transition: all 0.3s ease !important;
+    font-weight: bolder;
 
     top: 8%;
     background-color: #02a5eb !important;
@@ -35,7 +36,7 @@
     height: 15%;
     padding: 0;
     display: inline-block;
-    line-height: 0;
+    line-height: 20px;
     text-align: center;
     display: inline-block !important;
     text-decoration: none !important;
@@ -45,17 +46,18 @@
     margin-right: 50px;
     vertical-align: middle;
     transition: all 0.3s ease !important;
+    font-weight: bolder;
 
     top: 31%;
     background-color: #d66dfc !important;
-    color: #d20ef0 !important;
-    border: 3px solid #d20ef0 !important;
+    color: #a60396 !important;
+    border: 3px solid #a60396 !important;
 }
 .button_2:hover{
     text-decoration: none !important; 
-    background-color: #d20ef0 !important;
+    background-color: #a60396 !important;
     color: #57014e !important;
-    border-color: #d20ef0 !important;
+    border-color: #a60396 !important;
 }
 
 .button_3 {
@@ -65,7 +67,7 @@
     height: 15%;
     padding: 0;
     display: inline-block;
-    line-height: 0;
+    line-height: 20px;
     text-align: center;
     display: inline-block !important;
     text-decoration: none !important;
@@ -75,17 +77,18 @@
     margin-right: 50px;
     vertical-align: middle;
     transition: all 0.3s ease !important;
+    font-weight: bolder;
     
     top: 54%;
     background-color: #fab01b !important;
-    color: #fa8a0a !important;
-    border: 3px solid #fa8a0a !important;
+    color: #b36d1d !important;
+    border: 3px solid #b36d1d !important;
 }
 .button_3:hover{
     text-decoration: none !important; 
-    background-color: #fa8a0a !important;
+    background-color: #b36d1d !important;
     color: #7a330a !important;
-    border-color: #fa8a0a !important;
+    border-color: #b36d1d !important;
 }
 
 .button_4 {
@@ -95,7 +98,7 @@
     height: 15%;
     padding: 0;
     display: inline-block;
-    line-height: 0;
+    line-height: 20px;
     text-align: center;
     display: inline-block !important;
     text-decoration: none !important;
@@ -104,6 +107,7 @@
     margin: 0 auto;
     vertical-align: middle;
     transition: all 0.3s ease !important;
+    font-weight: bolder;
     
     top:77%;
     background-color: #0afa5a !important;
