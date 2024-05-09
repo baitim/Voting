@@ -1,56 +1,89 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, request, json, jsonify
 import time
 
 app = Flask(__name__)
+application = app
 
-data = []
-with open("logs/voices_logs") as f:
-    for line in f:
-        data.append([float(x) for x in line.split()])
-voices1 = (int)(data[0][0])
-voices2 = (int)(data[1][0])
-voices3 = (int)(data[2][0])
-voices4 = (int)(data[3][0])
+voices = []
+with open("logs/state_voices_logs") as file:
+   voices = json.load(file)
 
-@app.route('/', methods=['POST', 'GET'])
+chat = ""
+with open("logs/state_chat_logs") as file:
+   chat = file.read()
+
+@app.route('/')
 def main():
-   global voices1
-   global voices2
-   global voices3
-   global voices4
+   return render_template("index.html")
 
+@app.route('/btn', methods=['POST'])
+def btn():
+   global voices
+   print(request.remote_addr)
+   btn_ind = (int)(request.values.get('btn_ind'))
    if request.method == 'POST':
-         all_logs_file = open("logs/all_logs", "a+")
-         named_tuple = time.localtime()
-         time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
-         sum_voices = voices1 + voices2 + voices3 + voices4
+      if btn_ind != -1:
+         voices[btn_ind - 1] += 1
+         logging_btn(btn_ind)
+         logging_state()
 
-         if request.form.get('btn1') == 'btn1':
-            voices1 += 1
-            logs_str = 'sum\t' + str(sum_voices) + '\tbtn1\t' + str(voices1) + "\ttime\t" + str(time_string) + "\n"
+   return {"voices1":voices[0], "voices2":voices[1], "voices3":voices[2], "voices4":voices[3]}
 
-         elif request.form.get('btn2') == 'btn2':
-            voices2 += 1
-            logs_str = 'sum\t' + str(sum_voices) + '\tbtn2\t' + str(voices2) + "\ttime\t" + str(time_string) + "\n"
+@app.route('/msg', methods=['POST'])
+def msg():
+   global chat
+   message = request.values.get('msg')
+   if (message == ""):
+      return {"chat":chat}
+   
+   if request.method == 'POST':
+      named_tuple = time.localtime()
+      time_string = time.strftime("%m/%d/%Y %H:%M:%S", named_tuple)
+      chat += "from " + str(request.remote_addr) + "\tat " + str(time_string) + "<br/>" + "\n"
+      message_width = 34
+      for i in range(int(len(message) / message_width) + 1):
+         print(i * message_width, i * (message_width + 1))
+         left_border  = min(len(message), i * message_width)
+         right_border = min(len(message), (i + 1) * message_width )
+         chat += str(message[left_border:right_border]) + "<br/>" + "\n"
+      logging_msg()
+      logging_state()
 
-         elif request.form.get('btn3') == 'btn3':
-            voices3 += 1
-            logs_str = 'sum\t' + str(sum_voices) + '\tbtn3\t' + str(voices3) + "\ttime\t" + str(time_string) + "\n"
+   return {"chat":chat}
 
-         elif request.form.get('btn4') == 'btn4':
-            voices4 += 1
-            logs_str = 'sum\t' + str(sum_voices) + '\tbtn4\t' + str(voices4) + "\ttime\t" + str(time_string) + "\n"
+@app.route('/process', methods=['POST'])
+def process():
+   global voices
+   return {"voices1":voices[0], "voices2":voices[1], "voices3":voices[2], "voices4":voices[3], "chat":chat}
 
-         all_logs_file.write(logs_str)
-         all_logs_file.close()
+def logging_btn(btn_ind):
+   global voices
+   named_tuple = time.localtime()
+   time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
 
-         voices_logs_file = open("logs/voices_logs", "w")
-         logs_str = str(voices1) + "\n" + str(voices2) + "\n" + str(voices3) + "\n" + str(voices4)
-         voices_logs_file.write(logs_str)
-         voices_logs_file.close()
-         return redirect(request.url)
+   btn_logs_file = open("logs/voices_logs", "a+")
+   logs_str = str(time_string) + "\t" + str(btn_ind) + "\t" + "\t".join([str(element) for element in voices]) + '\n'
+   btn_logs_file.write(logs_str)
+   btn_logs_file.close()
 
-   return render_template("index.html", voices1=voices1, voices2=voices2, voices3=voices3, voices4=voices4)
+def logging_msg():
+   global chat
+   named_tuple = time.localtime()
+   time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+   msg_logs_file = open("logs/messages_logs", "a+")
+   logs_str = str(time_string) + '\n' + chat + "\n"
+   msg_logs_file.write(logs_str)
+   msg_logs_file.close()
+
+def logging_state():
+   global voices
+   global chat
+   voices_logs_file = open("logs/state_voices_logs", "w")
+   voices_logs_file.write("[" + ",".join([str(element) for element in voices]) + "]")
+   voices_logs_file.close()
+   chat_logs_file = open("logs/state_chat_logs", "w")
+   chat_logs_file.write(chat + "\n")
+   chat_logs_file.close()
 
 if __name__ == "__main__":
    app.run(debug=True)

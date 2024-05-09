@@ -1,7 +1,93 @@
-.button_1 {
+.message {
+    overflow: auto;
+    display: inline-block;
     position: fixed;
-    left: 30%;
-    width: 40%;
+    left: 50%;
+    width: 34%;
+    top: 85%;
+    height: 10%;
+    padding: 0;
+    display: inline-block;
+    line-height: 25px;
+    text-align: left top;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    font-size: 24px !important;
+    margin: 0 auto;
+
+    vertical-align: middle;
+    transition: all 0.3s ease !important;
+    font-weight: bolder;
+
+    background-color: #fad241 !important;
+    color: #b38c00 !important;
+    border: 3px solid #b38c00 !important;
+}
+
+.button_msg {
+    display: inline-block;
+    position: fixed;
+    left: 85%;
+    width: 10%;
+    top: 85%;
+    height: 10.5%;
+    padding: 0;
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    font-size: 24px !important;
+    margin: 0 auto;
+
+    vertical-align: middle;
+    transition: all 0.3s ease !important;
+    font-weight: bolder;
+
+    background-color: #fad241 !important;
+    color: #b38c00 !important;
+    border: 3px solid #b38c00 !important;
+}
+.button_msg:hover{
+    text-decoration: none !important; 
+    background-color: #b38c00 !important;
+    color: #755606 !important;
+    border-color: #b38c00 !important;
+}
+
+.chat {
+    overflow: auto;
+    display: inline-block;
+    position: fixed;
+    left: 50%;
+    width: 45%;
+    top: 5%;
+    height: 79%;
+    padding: 0;
+    display: inline-block;
+    line-height: 20px;
+    text-align: left top;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 0px !important;
+    font-size: 24px !important;
+    margin: 0 auto;
+
+    vertical-align: middle;
+    font-weight: bolder;
+
+    background-color: #fad241 !important;
+    color: #b38c00 !important;
+    border: 3px solid #b38c00 !important;
+}
+
+.button_1 {
+    display: inline-block;
+    position: fixed;
+    left: 10%;
+    width: 30%;
     height: 15%;
     padding: 0;
     display: inline-block;
@@ -12,7 +98,7 @@
     border-radius: 5px !important;
     font-size: 24px !important;
     margin: 0 auto;
-    margin-right: 50px;
+
     vertical-align: middle;
     transition: all 0.3s ease !important;
     font-weight: bolder;
@@ -30,9 +116,10 @@
 }
 
 .button_2 {
+    display: inline-block;
     position: fixed;
-    left: 30%;
-    width: 40%;
+    left: 10%;
+    width: 30%;
     height: 15%;
     padding: 0;
     display: inline-block;
@@ -43,7 +130,7 @@
     border-radius: 5px !important;
     font-size: 24px !important;
     margin: 0 auto;
-    margin-right: 50px;
+
     vertical-align: middle;
     transition: all 0.3s ease !important;
     font-weight: bolder;
@@ -61,9 +148,10 @@
 }
 
 .button_3 {
+    display: inline-block;
     position: fixed;
-    left: 30%;
-    width: 40%;
+    left: 10%;
+    width: 30%;
     height: 15%;
     padding: 0;
     display: inline-block;
@@ -74,7 +162,7 @@
     border-radius: 5px !important;
     font-size: 24px !important;
     margin: 0 auto;
-    margin-right: 50px;
+
     vertical-align: middle;
     transition: all 0.3s ease !important;
     font-weight: bolder;
@@ -92,9 +180,10 @@
 }
 
 .button_4 {
+    display: inline-block;
     position: fixed;
-    left: 30%;
-    width: 40%;
+    left: 10%;
+    width: 30%;
     height: 15%;
     padding: 0;
     display: inline-block;
@@ -111,7 +200,7 @@
     
     top:77%;
     background-color: #0afa5a !important;
-    color: #235902 !important;
+    color: #079426 !important;
     border: 3px solid #079426 !important;
 }
 .button_4:hover{
