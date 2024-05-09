@@ -88,7 +88,7 @@
     position: fixed;
     left: 10%;
     width: 30%;
-    height: 15%;
+    height: 14%;
     padding: 0;
     display: inline-block;
     line-height: 20px;
@@ -103,7 +103,7 @@
     transition: all 0.3s ease !important;
     font-weight: bolder;
 
-    top: 8%;
+    top: 4%;
     background-color: #02a5eb !important;
     color: #006089 !important;
     border: 3px solid #006089 !important;
@@ -120,7 +120,7 @@
     position: fixed;
     left: 10%;
     width: 30%;
-    height: 15%;
+    height: 14%;
     padding: 0;
     display: inline-block;
     line-height: 20px;
@@ -135,7 +135,7 @@
     transition: all 0.3s ease !important;
     font-weight: bolder;
 
-    top: 31%;
+    top: 21%;
     background-color: #d66dfc !important;
     color: #a60396 !important;
     border: 3px solid #a60396 !important;
@@ -152,7 +152,7 @@
     position: fixed;
     left: 10%;
     width: 30%;
-    height: 15%;
+    height: 14%;
     padding: 0;
     display: inline-block;
     line-height: 20px;
@@ -167,7 +167,7 @@
     transition: all 0.3s ease !important;
     font-weight: bolder;
     
-    top: 54%;
+    top: 39%;
     background-color: #fab01b !important;
     color: #b36d1d !important;
     border: 3px solid #b36d1d !important;
@@ -184,7 +184,7 @@
     position: fixed;
     left: 10%;
     width: 30%;
-    height: 15%;
+    height: 14%;
     padding: 0;
     display: inline-block;
     line-height: 20px;
@@ -198,7 +198,7 @@
     transition: all 0.3s ease !important;
     font-weight: bolder;
     
-    top:77%;
+    top:57%;
     background-color: #0afa5a !important;
     color: #079426 !important;
     border: 3px solid #079426 !important;

@@ -19,7 +19,6 @@ def main():
 @app.route('/btn', methods=['POST'])
 def btn():
    global voices
-   print(request.remote_addr)
    btn_ind = (int)(request.values.get('btn_ind'))
    if request.method == 'POST':
       if btn_ind != -1:
@@ -42,7 +41,6 @@ def msg():
       chat += "from " + str(request.remote_addr) + "\tat " + str(time_string) + "<br/>" + "\n"
       message_width = 34
       for i in range(int(len(message) / message_width) + 1):
-         print(i * message_width, i * (message_width + 1))
          left_border  = min(len(message), i * message_width)
          right_border = min(len(message), (i + 1) * message_width )
          chat += str(message[left_border:right_border]) + "<br/>" + "\n"

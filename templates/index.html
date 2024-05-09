@@ -6,88 +6,35 @@
         <title>Voting</title>
         <link rel="stylesheet", href="{{ url_for('static', filename='style.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     </head>
     <body style=" background: linear-gradient(90deg, #519be1, #F87293, #F9B78B);">
         
-        <button onclick="on_btn_click(1);" class="button_1"> 
+        <button onclick="on_btn_voice_click(1);" class="button_1"> 
             1 person
             <p> voices: <div id="voices1"></div></p> 
         </button>
 
-        <button onclick="on_btn_click(2);" class="button_2"> 
+        <button onclick="on_btn_voice_click(2);" class="button_2"> 
             2 person
             <p> voices: <div id="voices2"></div></p> 
         </button>
 
-        <button onclick="on_btn_click(3);" class="button_3">
+        <button onclick="on_btn_voice_click(3);" class="button_3">
             3 person
             <p> voices: <div id="voices3"></div></p> 
         </button>
 
-        <button onclick="on_btn_click(4);" class="button_4">
+        <button onclick="on_btn_voice_click(4);" class="button_4">
             4 person
             <p> voices: <div id="voices4"></div></p> 
         </button>
 
         <div id="chat" name="chat" class="chat"></div>
         <input id="message" type="text" name="message" class="message" placeholder=" input message">
-        <button onclick="on_msg_click();" class="button_msg">send</button>
+        <button onclick="on_btn_msg_click();" class="button_msg">send</button>
 
-        <script>
-
-            function on_btn_click(btn_ind) {
-                $.ajax({
-                    type: "POST",
-                    url : "/btn",
-                    data: {'btn_ind': btn_ind},
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#voices1').html(response.voices1)
-                        $('#voices2').html(response.voices2)
-                        $('#voices3').html(response.voices3)
-                        $('#voices4').html(response.voices4)
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            };
-
-            function on_msg_click() {
-                $.ajax({
-                    type: "POST",
-                    url : "/msg",
-                    data: {'msg': document.getElementById('message').value},
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#chat').html(response.chat)
-                        document.getElementById('message').value = ""
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            };
-
-            setInterval(function() {
-                $.ajax({
-                    type: "POST",
-                    url : "/process",
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#voices1').html(response.voices1)
-                        $('#voices2').html(response.voices2)
-                        $('#voices3').html(response.voices3)
-                        $('#voices4').html(response.voices4)
-                        $('#chat').html(response.chat)
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }, 100);
-
-        </script>
+        <button onclick="on_btn_msg_click();" class="button_msg">send</button>
 
     </body>
 </html>
