@@ -22,9 +22,13 @@ Implementation of the flask website rendered using flask
 ## Example
 
 <p align="center">
-    <img src="https://github.com/baitim/Voting/blob/main/images/main.png" width="30%">
-    <img src="https://github.com/baitim/Voting/blob/main/images/ip_rating.png" width="30%">
-    <img src="https://github.com/baitim/Voting/blob/main/images/rivals_rating.png" width="30%">
+    <img src="https://github.com/baitim/Voting/blob/main/images/main.png" width="90%">
+</p>
+<p align="center">
+    <img src="https://github.com/baitim/Voting/blob/main/images/ip_rating.png" width="90%">
+</p>
+<p align="center">
+    <img src="https://github.com/baitim/Voting/blob/main/images/rivals_rating.png" width="90%">
 </p>
 
 ## Features
