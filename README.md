@@ -13,7 +13,7 @@ Implementation of the flask website rendered using flask
     write <code>cd Voting</code> in terminal
 
 3. Install requirements <br>
-    write <code>./install.sh</code> in terminal
+    write <code>chmod "+x" install.sh && ./install.sh</code> in terminal
 
 4. Run <br>
     write <code>source venv/bin/activate && flask run</code> in terminal
