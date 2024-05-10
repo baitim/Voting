@@ -75,22 +75,27 @@ def update_ips_graph():
       for i in range(len(ips_voices[count])):
          for j in range(count_leads):
             if max_ips[count_leads - j - 1] < ips_voices[count][i]:
-               for k in range(count_leads - j - 2):
+               for k in range(count_leads - j - 1):
                   leaders_ips[k] = leaders_ips[k + 1]
                   max_ips[k] = max_ips[k + 1]
                leaders_ips[count_leads - j - 1] = i
                max_ips[count_leads - j - 1] = ips_voices[count][i]
                break
 
-      x_dates = [datetime.datetime.strptime(date, "%m/%d/%Y %H:%M:%S\n") for date in times]
+      time_dates = [datetime.datetime.strptime(date, "%m/%d/%Y %H:%M:%S\n") for date in times]
+
 
       for j in range(count_leads - 1, 0, -1):
          if (leaders_ips[j] == -1):
             continue
+
+         x_dates = []
          y_dates = []
          for i in range(1, count + 1, 1):
-            y_dates.append(ips_voices[i][leaders_ips[j]])
-         
+            if (len(ips_voices[i]) > leaders_ips[j]):
+               x_dates.append(time_dates[i - 1])
+               y_dates.append(ips_voices[i][leaders_ips[j]])
+
          leader_info = str(count_leads - j) + ": " + str(decimal2ip(ips_state[count][leaders_ips[j]])) \
                        + "\nvoices = " + str(max_ips[j])
          plt.plot(x_dates, y_dates, marker='.', label=leader_info)
@@ -104,6 +109,7 @@ def update_ips_graph():
       plt.grid(True)
       plt.savefig("static/ips_graph.png")
       plt.clf()
+      plt.close()
       return {}
    
 @app.route('/update_rivals_rating', methods=['POST'])
@@ -120,7 +126,7 @@ def update_rivals_rating():
       for i in range(0, len(lines), 5):
          times.append(lines[i])
          for j in range(count_leads):
-            leads.append(list(map(int, lines[i + j + 1].strip()))[0])
+            leads.append(list(map(int, lines[i + j + 1].strip().split(',')))[0])
          count += 1
 
       x_dates = [datetime.datetime.strptime(date, "%m/%d/%Y %H:%M:%S\n") for date in times]
@@ -131,18 +137,19 @@ def update_rivals_rating():
          for i in range(0, (count - 1) * count_leads, count_leads):
             y_dates.append(leads[i + j])
 
-         leader_info = str(j) + ": " + str(leads[(count - 1)* count_leads + j])
-         plt.plot(x_dates, y_dates, marker='.', label=leader_info, color = str(colors[j]))
+         rival_info = str(j) + ": " + str(leads[(count - 1)* count_leads + j])
+         plt.plot(x_dates, y_dates, marker='.', label=rival_info, color = str(colors[j]))
 
       plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%m/%d/%Y %H:%M:%S"))
       plt.gcf().autofmt_xdate()
       plt.xlabel('time')
       plt.ylabel('voices')
-      plt.title('IP rating')
+      plt.title('Rivals rating')
       plt.legend()
       plt.grid(True)
       plt.savefig("static/rivals_graph.png")
       plt.clf()
+      plt.close()
       return {}
 
 @app.route('/btn', methods=['POST'])
