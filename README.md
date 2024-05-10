@@ -20,9 +20,8 @@ Implementation of the flask website rendered using flask
     it will be launched in <code>http://127.0.0.1:5000/</code>
 
 ## Example
-<p align="center"><img src="https://github.com/baitim/Voting/blob/main/images/MazeExample.png" width="90%"></p>
 
-<p>
+<p align="center">
     <img src="https://github.com/baitim/Voting/blob/main/images/main.png" width="120" height="120">
     <img src="https://github.com/baitim/Voting/blob/main/images/ip_rating.png" width="120" height="120">
     <img src="https://github.com/baitim/Voting/blob/main/images/rivals_rating.png" width="120" height="120">
