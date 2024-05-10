@@ -31,20 +31,3 @@ function on_btn_msg_click() {
         }
     });
 };
-
-setInterval(function() {
-    $.ajax({
-        type: "POST",
-        url : "/process",
-        success: function(response) {
-            $('#voices1').html(response.voices1)
-            $('#voices2').html(response.voices2)
-            $('#voices3').html(response.voices3)
-            $('#voices4').html(response.voices4)
-            $('#chat').html(response.chat)
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-}, 100);

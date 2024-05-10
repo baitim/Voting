@@ -10,6 +10,22 @@
     </head>
     <body style=" background: linear-gradient(90deg, #519be1, #F87293, #F9B78B);">
         
+        <img class="image_graph" src="static/ips_graph.png">
+
+        <script>
+        setInterval(function() {
+            $.ajax({
+                type: "POST",
+                url : "/update_ips_rating",
+                success: function(response) {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }, 2000);
+        </script>
+
         <a href="/"><button class="button_back2main">back</button></a>
     </body>
 </html>

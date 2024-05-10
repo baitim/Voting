@@ -86,8 +86,8 @@
 .button_1 {
     display: inline-block;
     position: fixed;
-    left: 10%;
-    width: 30%;
+    left: 4%;
+    width: 42%;
     height: 14%;
     padding: 0;
     display: inline-block;
@@ -118,8 +118,8 @@
 .button_2 {
     display: inline-block;
     position: fixed;
-    left: 10%;
-    width: 30%;
+    left: 4%;
+    width: 42%;
     height: 14%;
     padding: 0;
     display: inline-block;
@@ -150,8 +150,8 @@
 .button_3 {
     display: inline-block;
     position: fixed;
-    left: 10%;
-    width: 30%;
+    left: 4%;
+    width: 42%;
     height: 14%;
     padding: 0;
     display: inline-block;
@@ -182,8 +182,8 @@
 .button_4 {
     display: inline-block;
     position: fixed;
-    left: 10%;
-    width: 30%;
+    left: 4%;
+    width: 42%;
     height: 14%;
     padding: 0;
     display: inline-block;
@@ -301,4 +301,11 @@
     background-color: #338f79 !important;
     color: #016887 !important;
     border-color: #338f79 !important;
+}
+
+.image_graph {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto
 }

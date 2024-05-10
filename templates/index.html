@@ -34,8 +34,27 @@
         <input id="message" type="text" name="message" class="message" placeholder=" input message">
         <button onclick="on_btn_msg_click();" class="button_msg">send</button>
 
-        <a href="rivals_rating.html"><button class="button_rivals">rivals rating</button></a>
-        <a href="ips_rating.html"   ><button class="button_ips">   ips rating   </button></a>
+        <a href="rivals_rating"><button class="button_rivals">rivals rating</button></a>
+        <a href="ips_rating"   ><button class="button_ips">   ips rating   </button></a>
+
+        <script>
+        setInterval(function() {
+            $.ajax({
+                type: "POST",
+                url : "/process",
+                success: function(response) {
+                    $('#voices1').html(response.voices1)
+                    $('#voices2').html(response.voices2)
+                    $('#voices3').html(response.voices3)
+                    $('#voices4').html(response.voices4)
+                    $('#chat').html(response.chat)
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }, 100);
+        </script>
 
     </body>
 </html>

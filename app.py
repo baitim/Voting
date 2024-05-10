@@ -1,9 +1,13 @@
-from flask import Flask, render_template, request, json, redirect
+from flask import Flask, render_template, request, json
 import time
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+matplotlib.use('agg')
+import datetime
 
 app = Flask(__name__)
 application = app
-
 
 def ip2decimal(ip_address):
     parts = list(map(int, ip_address.split('.')))
@@ -38,13 +42,67 @@ ips_voices = list(map(int, lines[1].strip().split(',')))
 def main():
    return render_template("index.html")
 
-@app.route('/ips_rating.html')
+@app.route('/ips_rating')
 def render_ips_rating():
    return render_template("ips_rating.html")
 
-@app.route('/rivals_rating.html')
+@app.route('/rivals_rating')
 def render_rivals_rating():
    return render_template("rivals_rating.html")
+   
+@app.route('/update_ips_rating', methods=['POST'])
+def update_ips_graph():
+   if request.method == 'POST':
+      lines = []
+      with open("logs/ips_voices_logs") as file:
+         lines = file.readlines()
+
+      count_leads = 5
+      leaders_ips = [-1] * count_leads
+      max_ips = [-1] * count_leads
+      times = []
+      ips_state = [[]]
+      ips_voices = [[]]
+      count = 0
+      for i in range(0, len(lines), 3):
+         times.append(lines[i])
+         ips_state.append(list(map(int, lines[i + 1].strip().split(','))))
+         ips_voices.append(list(map(int, lines[i + 2].strip().split(','))))
+         count += 1
+
+      for i in range(len(ips_voices[count])):
+         for j in range(count_leads):
+            if max_ips[count_leads - j - 1] < ips_voices[count][i]:
+               for k in range(count_leads - j - 2):
+                  leaders_ips[k] = leaders_ips[k + 1]
+                  max_ips[k] = max_ips[k + 1]
+               leaders_ips[count_leads - j - 1] = i
+               max_ips[count_leads - j - 1] = ips_voices[count][i]
+               break
+
+      x_dates = [datetime.datetime.strptime(date, "%m/%d/%Y %H:%M:%S\n") for date in times]
+
+      for j in range(count_leads - 1, 0, -1):
+         if (leaders_ips[j] == -1):
+            continue
+         y_dates = []
+         for i in range(1, count + 1, 1):
+            y_dates.append(ips_voices[i][leaders_ips[j]])
+         
+         leader_info = str(count_leads - j) + ": " + str(decimal2ip(ips_state[count][leaders_ips[j]]))
+         plt.plot(x_dates, y_dates, marker='.', label=leader_info)
+
+      plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%m/%d/%Y %H:%M:%S"))
+      plt.gcf().autofmt_xdate()
+      plt.xlabel('time')
+      plt.ylabel('voices')
+      plt.title('IP rating')
+      plt.legend()
+      plt.grid(True)
+      plt.savefig("static/ips_graph.png")
+      plt.clf()
+      return {}
+   
 
 @app.route('/btn', methods=['POST'])
 def btn():
@@ -103,18 +161,18 @@ def log_ips_voices():
    global ips
    global ips_voices
    named_tuple = time.localtime()
-   time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+   time_string = time.strftime("%m/%d/%Y %H:%M:%S", named_tuple)
    rival_logs_file = open("logs/ips_voices_logs", "a+")
    logs_str = str(time_string) + '\n' 
-   logs_str += " ".join([str(element) for element in ips]) + '\n'
-   logs_str += " ".join([str(element) for element in ips_voices]) + '\n'
+   logs_str += ",".join([str(element) for element in ips]) + '\n'
+   logs_str += ",".join([str(element) for element in ips_voices]) + '\n'
    rival_logs_file.write(logs_str)
    rival_logs_file.close()
 
 def log_btn(btn_ind):
    global voices
    named_tuple = time.localtime()
-   time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+   time_string = time.strftime("%m/%d/%Y %H:%M:%S", named_tuple)
 
    btn_logs_file = open("logs/voices_logs", "a+")
    logs_str = str(time_string) + "\t" + str(btn_ind) + "\t" + "\t".join([str(element) for element in voices]) + '\n'
@@ -124,7 +182,7 @@ def log_btn(btn_ind):
 def log_msg():
    global chat
    named_tuple = time.localtime()
-   time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+   time_string = time.strftime("%m/%d/%Y %H:%M:%S", named_tuple)
    msg_logs_file = open("logs/messages_logs", "a+")
    logs_str = str(time_string) + '\n' + chat + "\n"
    msg_logs_file.write(logs_str)
