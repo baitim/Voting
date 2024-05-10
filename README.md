@@ -13,10 +13,10 @@ Implementation of the flask website rendered using flask
     write <code>cd Voting</code> in terminal
 
 3. Install requirements <br>
-    write <code>pip install -r requirements.txt</code> in terminal
+    write <code>./install.sh</code> in terminal
 
 4. Run <br>
-    write <code>flask run</code> in terminal
+    write <code>source venv/bin/activate && flask run</code> in terminal
     it will be launched in <code>http://127.0.0.1:5000/</code>
 
 ## Example
