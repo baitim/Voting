@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, jsonify
+from flask import Flask, render_template, request, json, redirect
 import time
 
 app = Flask(__name__)
@@ -15,6 +15,14 @@ with open("logs/state_chat_logs") as file:
 @app.route('/')
 def main():
    return render_template("index.html")
+
+@app.route('/ips_rating.html')
+def render_ips_rating():
+   return render_template("ips_rating.html")
+
+@app.route('/rivals_rating.html')
+def render_rivals_rating():
+   return render_template("rivals_rating.html")
 
 @app.route('/btn', methods=['POST'])
 def btn():

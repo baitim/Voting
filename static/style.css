@@ -209,3 +209,96 @@
     color: #235902 !important;
     border-color: #079426 !important;
 }
+
+.button_rivals { 
+    display: inline-block;
+    position: fixed;
+    left: 4%;
+    width: 19%;
+    height: 20%;
+    padding: 0;
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    font-size: 24px !important;
+    margin: 0 auto;
+    vertical-align: middle;
+    transition: all 0.3s ease !important;
+    font-weight: bolder;
+    
+    top:75%;
+    background-color: #00ffc4 !important;
+    color: #338f79 !important;
+    border: 3px solid #338f79 !important;
+}
+.button_rivals:hover{
+    text-decoration: none !important; 
+    background-color: #338f79 !important;
+    color: #016887 !important;
+    border-color: #338f79 !important;
+}
+
+.button_ips { 
+    display: inline-block;
+    position: fixed;
+    left: 27%;
+    width: 19%;
+    height: 20%;
+    padding: 0;
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    font-size: 24px !important;
+    margin: 0 auto;
+    vertical-align: middle;
+    transition: all 0.3s ease !important;
+    font-weight: bolder;
+    
+    top:75%;
+    background-color: #00ffc4 !important;
+    color: #338f79 !important;
+    border: 3px solid #338f79 !important;
+}
+.button_ips:hover{
+    text-decoration: none !important; 
+    background-color: #338f79 !important;
+    color: #016887 !important;
+    border-color: #338f79 !important;
+}
+
+.button_back2main { 
+    display: inline-block;
+    position: fixed;
+    left: 10%;
+    width: 80%;
+    height: 10%;
+    padding: 0;
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    font-size: 24px !important;
+    margin: 0 auto;
+    vertical-align: middle;
+    transition: all 0.3s ease !important;
+    font-weight: bolder;
+    
+    top:85%;
+    background-color: #00ffc4 !important;
+    color: #338f79 !important;
+    border: 3px solid #338f79 !important;
+}
+.button_back2main:hover{
+    text-decoration: none !important; 
+    background-color: #338f79 !important;
+    color: #016887 !important;
+    border-color: #338f79 !important;
+}

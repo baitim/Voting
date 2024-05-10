@@ -36,7 +36,6 @@ setInterval(function() {
     $.ajax({
         type: "POST",
         url : "/process",
-        dataType: 'json',
         success: function(response) {
             $('#voices1').html(response.voices1)
             $('#voices2').html(response.voices2)
