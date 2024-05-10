@@ -9,6 +9,8 @@ import datetime
 app = Flask(__name__)
 application = app
 
+colors = ["#006089", "#a60396", "#b36d1d", "#079426"]
+
 def ip2decimal(ip_address):
     parts = list(map(int, ip_address.split('.')))
     decimal = 0
@@ -89,7 +91,8 @@ def update_ips_graph():
          for i in range(1, count + 1, 1):
             y_dates.append(ips_voices[i][leaders_ips[j]])
          
-         leader_info = str(count_leads - j) + ": " + str(decimal2ip(ips_state[count][leaders_ips[j]]))
+         leader_info = str(count_leads - j) + ": " + str(decimal2ip(ips_state[count][leaders_ips[j]])) \
+                       + "\nvoices = " + str(max_ips[j])
          plt.plot(x_dates, y_dates, marker='.', label=leader_info)
 
       plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%m/%d/%Y %H:%M:%S"))
@@ -103,6 +106,44 @@ def update_ips_graph():
       plt.clf()
       return {}
    
+@app.route('/update_rivals_rating', methods=['POST'])
+def update_rivals_rating():
+   if request.method == 'POST':
+      lines = []
+      with open("logs/voices_logs") as file:
+         lines = file.readlines()
+
+      count_leads = 4
+      times = []
+      leads = []
+      count = 0
+      for i in range(0, len(lines), 5):
+         times.append(lines[i])
+         for j in range(count_leads):
+            leads.append(list(map(int, lines[i + j + 1].strip()))[0])
+         count += 1
+
+      x_dates = [datetime.datetime.strptime(date, "%m/%d/%Y %H:%M:%S\n") for date in times]
+      x_dates = x_dates[1:len(x_dates):1]
+
+      for j in range(count_leads):
+         y_dates = []
+         for i in range(0, (count - 1) * count_leads, count_leads):
+            y_dates.append(leads[i + j])
+
+         leader_info = str(j) + ": " + str(leads[(count - 1)* count_leads + j])
+         plt.plot(x_dates, y_dates, marker='.', label=leader_info, color = str(colors[j]))
+
+      plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%m/%d/%Y %H:%M:%S"))
+      plt.gcf().autofmt_xdate()
+      plt.xlabel('time')
+      plt.ylabel('voices')
+      plt.title('IP rating')
+      plt.legend()
+      plt.grid(True)
+      plt.savefig("static/rivals_graph.png")
+      plt.clf()
+      return {}
 
 @app.route('/btn', methods=['POST'])
 def btn():
@@ -175,7 +216,7 @@ def log_btn(btn_ind):
    time_string = time.strftime("%m/%d/%Y %H:%M:%S", named_tuple)
 
    btn_logs_file = open("logs/voices_logs", "a+")
-   logs_str = str(time_string) + "\t" + str(btn_ind) + "\t" + "\t".join([str(element) for element in voices]) + '\n'
+   logs_str = str(time_string) + "\n" + "\n".join([str(element) for element in voices]) + '\n'
    btn_logs_file.write(logs_str)
    btn_logs_file.close()
 
