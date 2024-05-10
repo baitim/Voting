@@ -22,9 +22,9 @@ Implementation of the flask website rendered using flask
 ## Example
 
 <p align="center">
-    <img src="https://github.com/baitim/Voting/blob/main/images/main.png" width="120" height="120">
-    <img src="https://github.com/baitim/Voting/blob/main/images/ip_rating.png" width="120" height="120">
-    <img src="https://github.com/baitim/Voting/blob/main/images/rivals_rating.png" width="120" height="120">
+    <img src="https://github.com/baitim/Voting/blob/main/images/main.png" width="30%">
+    <img src="https://github.com/baitim/Voting/blob/main/images/ip_rating.png" width="30%">
+    <img src="https://github.com/baitim/Voting/blob/main/images/rivals_rating.png" width="30%">
 </p>
 
 ## Features
@@ -35,7 +35,7 @@ Implementation of the flask website rendered using flask
 * Displaying the growth rate of votes received from the 5 most voting ip addresses,
 * Logging of all information
 
-<p align="center"><img src="https://github.com/baitim/Voting/blob/main/images/cat.gif" width="40%"></p>
+<p align="center"><img src="https://github.com/baitim/Voting/blob/main/images/cat.gif" width="50%"></p>
 
 ## Support
 **This project is created by [baitim](https://t.me/bai_tim)**
